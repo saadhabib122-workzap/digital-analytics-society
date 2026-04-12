@@ -64,9 +64,12 @@
 </nav>
 
 <div class="page-hero">
-  <div class="page-hero-tag">Events & Gatherings</div>
-  <h1>Where the data<br/>community meets.</h1>
-  <p>From flagship conferences to intimate roundtables — curated experiences that spark conversations, share real knowledge, and forge lasting professional bonds.</p>
+  <canvas class="shader-canvas"></canvas>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">Events & Gatherings</div>
+    <h1>Where the data<br/>community meets.</h1>
+    <p>From flagship conferences to intimate roundtables — curated experiences that spark conversations, share real knowledge, and forge lasting professional bonds.</p>
+  </div>
 </div>
 
 <div class="marquee-strip">
@@ -200,6 +203,7 @@
   <div class="footer-bottom"><span>© 2026 Digital Analytics Society</span><div class="socials"><a class="social-btn" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div></div>
 </footer>
 
+<script src="shader-bg.js"></script>
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('light', document.querySelector('.page-hero').getBoundingClientRect().bottom < 68));

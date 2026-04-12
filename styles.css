@@ -89,16 +89,24 @@ nav.light .hamburger span { background: var(--black); }
 .section-p { font-size: 1rem; line-height: 1.85; color: #666; }
 .section-p.light { color: rgba(255,255,255,0.45); }
 
+/* ─── SHADER CANVAS ───────────────────────────── */
+canvas.shader-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block; z-index: 0;
+}
+
 /* ─── INNER PAGE HERO ─────────────────────────── */
 .page-hero {
   background: var(--black); padding: 140px 5vw 80px;
   position: relative; overflow: hidden;
 }
 .page-hero::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(230,57,70,0.08) 0%, transparent 70%);
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: radial-gradient(ellipse at 70% 50%, rgba(230,57,70,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
+.page-hero-inner { position: relative; z-index: 2; }
 .page-hero-tag { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 .page-hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--red); }
 .page-hero h1 { font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 900; line-height: 1; letter-spacing: -0.03em; color: white; margin-bottom: 24px; }

@@ -100,9 +100,12 @@
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="page-hero-tag">About DAS</div>
-  <h1>Built on the belief that<br/>data belongs to everyone.</h1>
-  <p>The Digital Analytics Society is a professional community connecting people across data, analytics, digital strategy and marketing — through events, content, publishing, and genuine human connection.</p>
+  <canvas class="shader-canvas"></canvas>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">About DAS</div>
+    <h1>Built on the belief that<br/>data belongs to everyone.</h1>
+    <p>The Digital Analytics Society is a professional community connecting people across data, analytics, digital strategy and marketing — through events, content, publishing, and genuine human connection.</p>
+  </div>
 </div>
 
 <div class="marquee-strip">
@@ -326,6 +329,7 @@
   </div>
 </footer>
 
+<script src="shader-bg.js"></script>
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('light', document.querySelector('.page-hero').getBoundingClientRect().bottom < 68));
