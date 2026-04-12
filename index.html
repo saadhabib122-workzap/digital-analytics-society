@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Analytics Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:       #E63946;
+      --red-dark:  #c0242f;
+      --black:     #0f0f0f;
+      --black-mid: #1A1A1A;
+      --black-card:#1e1e1e;
+      --gray:      #E8E8E8;
+      --gray-mid:  #888;
+      --white:     #FFFFFF;
+      --off-white: #F7F7F5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--black); background: var(--white); overflow-x: hidden; }
+    section, .stats-band, .manifesto, .cta-section { scroll-margin-top: 68px; }
+    h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; }
+    .mono { font-family: 'DM Mono', monospace; }
+
+    /* ─── SCROLLBAR ────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--red); }
+
+    /* ─── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 68px;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.3s;
+    }
+    nav.light {
+      background: rgba(255,255,255,0.95);
+      border-bottom-color: var(--gray);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif; font-weight: 600;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65); transition: color 0.2s;
+    }
+    nav.light .nav-links a { color: var(--black-mid); }
+    .nav-links a:hover { color: var(--red) !important; }
+    .nav-cta {
+      background: var(--red) !important; color: var(--white) !important;
+      padding: 9px 20px; border-radius: 3px;
+    }
+    .nav-cta:hover { background: var(--red-dark) !important; color: var(--white) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: white; transition: all 0.3s; }
+    nav.light .hamburger span { background: var(--black); }
+
+    /* ─── HERO ─────────────────────────────────────── */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      background: var(--black);
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    #hero-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0.35;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 5vw; max-width: 860px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 1px; background: var(--red);
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 900; line-height: 0.96;
+      letter-spacing: -0.03em; color: var(--white);
+      margin-bottom: 32px;
+    }
+    .hero h1 .line-red { color: var(--red); display: block; }
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      line-height: 1.8; color: rgba(255,255,255,0.5);
+      max-width: 500px; margin-bottom: 48px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; border-radius: 3px; transition: all 0.2s; }
+    .btn-red { background: var(--red); color: white; padding: 14px 28px; }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-outline-white { border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.75); padding: 14px 28px; }
+    .btn-outline-white:hover { border-color: white; color: white; }
+    .btn-outline-dark { border: 2px solid var(--black); color: var(--black); padding: 13px 28px; }
+    .btn-outline-dark:hover { background: var(--black); color: white; }
+
+    .hero-scroll {
+      position: absolute; bottom: 36px; left: 5vw; z-index: 2;
+      display: flex; align-items: center; gap: 14px;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .hero-scroll-line { width: 40px; height: 1px; background: rgba(255,255,255,0.2); }
+
+    .hero-stat-row {
+      position: absolute; bottom: 28px; right: 5vw; z-index: 2;
+      display: flex; gap: 40px;
+    }
+    .hero-stat { text-align: right; }
+    .hero-stat-num {
+      font-family: 'DM Mono', monospace; font-size: 1.6rem; font-weight: 500;
+      color: var(--white); line-height: 1;
+    }
+    .hero-stat-num sup { font-size: 0.9rem; color: var(--red); }
+    .hero-stat-label {
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-top: 4px;
+    }
+
+    /* ─── MARQUEE ──────────────────────────────────── */
+    .marquee-strip { background: var(--red); padding: 13px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-inner { display: inline-flex; animation: marquee 30s linear infinite; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 24px;
+      padding: 0 32px;
+      font-family: 'DM Mono', monospace; font-weight: 500;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+    .marquee-sep { width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ─── SECTIONS ─────────────────────────────────── */
+    .section-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--red); }
+
+    .section-h { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; }
+    .section-p { font-size: 1rem; line-height: 1.85; color: #666; }
+
+    /* ─── MANIFESTO ────────────────────────────────── */
+    .manifesto {
+      background: var(--off-white);
+      padding: 56px 5vw;
+      display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: center;
+    }
+    .manifesto-num {
+      font-family: 'DM Mono', monospace; font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 500; line-height: 1; color: var(--gray);
+      user-select: none;
+    }
+    .manifesto-text blockquote {
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      font-size: clamp(1.4rem, 2.5vw, 2rem); line-height: 1.4;
+      letter-spacing: -0.02em; color: var(--black);
+      border-left: 3px solid var(--red); padding-left: 28px;
+    }
+    .manifesto-text p {
+      margin-top: 24px; font-size: 0.95rem; line-height: 1.8; color: #666; padding-left: 31px;
+    }
+
+    /* ─── ABOUT ────────────────────────────────────── */
+    .about { padding: 80px 5vw; }
+    .about-grid { display: grid; grid-template-columns: 5fr 4fr; gap: 100px; align-items: center; }
+
+    .about-left .section-h { margin-bottom: 24px; }
+    .about-left .section-p { margin-bottom: 40px; max-width: 480px; }
+
+    .about-features { display: flex; flex-direction: column; gap: 0; }
+    .about-feat {
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 20px 0; border-bottom: 1px solid var(--gray);
+    }
+    .about-feat:last-child { border-bottom: none; }
+    .feat-index {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      color: var(--red); flex-shrink: 0; margin-top: 3px;
+    }
+    .about-feat h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 5px; }
+    .about-feat p { font-size: 0.85rem; line-height: 1.7; color: #777; }
+
+    .about-right { position: relative; }
+    .about-visual-grid {
+      display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+      gap: 12px;
+    }
+    .av-card {
+      background: var(--black); border-radius: 10px; padding: 28px 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 160px; position: relative; overflow: hidden;
+    }
+    .av-card:first-child { grid-row: span 2; background: var(--red); }
+    .av-card-num {
+      font-family: 'DM Mono', monospace; font-size: 2.4rem; font-weight: 500;
+      color: white; line-height: 1;
+    }
+    .av-card-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .av-card-icon {
+      position: absolute; bottom: -10px; right: -10px;
+      width: 60px; height: 60px; opacity: 0.08;
+    }
+
+    /* bar mini chart */
+    .mini-bars { display: flex; align-items: flex-end; gap: 4px; height: 40px; margin-bottom: 12px; }
+    .mini-bar { flex: 1; border-radius: 2px 2px 0 0; background: rgba(255,255,255,0.25); }
+    .mini-bar.a { background: rgba(255,255,255,0.85); }
+
+    /* ─── PILLARS ──────────────────────────────────── */
+    .pillars { background: var(--black); padding: 80px 5vw; }
+    .pillars-head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 40px;
+    }
+    .pillars-head .section-tag { color: rgba(255,255,255,0.4); }
+    .pillars-head .section-tag::before { background: rgba(255,255,255,0.4); }
+    .pillars-head .section-h { color: white; }
+    .pillars-head-right { max-width: 360px; font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.4); }
+
+    .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+    .pillar {
+      background: var(--black); padding: 52px 36px;
+      display: flex; flex-direction: column; gap: 28px;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .pillar:hover { background: #161616; }
+    .pillar-index {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.1em; color: var(--red);
+    }
+    .pillar-icon-wrap {
+      width: 56px; height: 56px; border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .pillar:hover .pillar-icon-wrap { border-color: var(--red); color: var(--red); background: rgba(230,57,70,0.08); }
+    .pillar h3 { font-size: 1.15rem; font-weight: 700; color: white; }
+    .pillar p { font-size: 0.85rem; line-height: 1.75; color: rgba(255,255,255,0.4); }
+    .pillar-arrow {
+      margin-top: auto; font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); transition: color 0.3s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pillar:hover .pillar-arrow { color: var(--red); }
+    .pillar-arrow::after { content: '→'; }
+
+    /* ─── STATS ────────────────────────────────────── */
+    .stats-band { background: var(--red); padding: 64px 5vw; }
+    .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .stat-block {
+      padding: 0 40px; border-right: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+    }
+    .stat-block:first-child { padding-left: 0; }
+    .stat-block:last-child { border-right: none; }
+    .stat-block-num {
+      font-family: 'DM Mono', monospace; font-size: 3rem; font-weight: 500;
+      color: white; line-height: 1; margin-bottom: 8px;
+    }
+    .stat-block-num sup { font-size: 1.4rem; }
+    .stat-block-label {
+      font-family: 'Poppins', sans-serif; font-weight: 600;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ─── PUBLISHING ───────────────────────────────── */
+    .publishing { padding: 80px 5vw; background: var(--off-white); }
+    .pub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; margin-top: 64px; }
+
+    .pub-steps { display: flex; flex-direction: column; gap: 0; }
+    .pub-step {
+      display: grid; grid-template-columns: 56px 1fr;
+      gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--gray); cursor: default;
+    }
+    .pub-step:last-child { border-bottom: none; }
+    .pub-step-num {
+      font-family: 'DM Mono', monospace; font-size: 1.4rem; font-weight: 500;
+      color: #bbb; line-height: 1; transition: color 0.3s;
+    }
+    .pub-step:hover .pub-step-num { color: var(--red); }
+    .pub-step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; transition: color 0.3s; }
+    .pub-step:hover h4 { color: var(--red); }
+    .pub-step p { font-size: 0.85rem; line-height: 1.7; color: #777; }
+
+    .pub-books { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .book {
+      border-radius: 8px; overflow: hidden;
+      background: var(--black); padding: 32px 24px;
+      border-left: 4px solid var(--red);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .book:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.2); }
+    .book-genre {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 12px;
+    }
+    .book h4 { font-size: 0.95rem; font-weight: 700; color: white; line-height: 1.3; margin-bottom: 8px; }
+    .book p { font-size: 0.78rem; line-height: 1.6; color: rgba(255,255,255,0.4); }
+
+    /* ─── MEMBERSHIP ───────────────────────────────── */
+    .membership { padding: 80px 5vw; background: var(--black); }
+    .membership .section-tag { color: rgba(255,255,255,0.4); }
+    .membership .section-tag::before { background: rgba(255,255,255,0.4); }
+    .membership .section-h { color: white; margin-bottom: 12px; }
+    .membership-intro { color: rgba(255,255,255,0.4); font-size: 0.95rem; max-width: 480px; margin-bottom: 60px; line-height: 1.8; }
+
+    .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+    .tier {
+      background: var(--black); padding: 48px 36px;
+      display: flex; flex-direction: column;
+    }
+    .tier.featured { background: var(--red); }
+
+    .tier-label {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 20px;
+    }
+    .tier.featured .tier-label { color: rgba(255,255,255,0.7); }
+
+    .tier-price {
+      font-family: 'DM Mono', monospace; font-size: 3rem; font-weight: 500;
+      color: white; line-height: 1; margin-bottom: 6px;
+    }
+    .tier-price sup { font-size: 1.4rem; }
+    .tier-period { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-bottom: 28px; }
+    .tier.featured .tier-period { color: rgba(255,255,255,0.6); }
+
+    .tier-name { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 16px; }
+    .tier-desc { font-size: 0.84rem; line-height: 1.7; color: rgba(255,255,255,0.4); margin-bottom: 32px; }
+    .tier.featured .tier-desc { color: rgba(255,255,255,0.7); }
+
+    .tier-features { list-style: none; display: flex; flex-direction: column; gap: 0; flex: 1; margin-bottom: 36px; }
+    .tier-feat {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.84rem; color: rgba(255,255,255,0.5);
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .tier.featured .tier-feat { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.15); }
+    .tier-feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+    .tier.featured .tier-feat-dot { background: white; }
+
+    .btn-tier-white { background: white; color: var(--black); padding: 14px; text-align: center; border-radius: 3px; justify-content: center; }
+    .btn-tier-white:hover { background: var(--gray); }
+    .btn-tier-outline { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 14px; text-align: center; border-radius: 3px; justify-content: center; }
+    .btn-tier-outline:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+    /* ─── CTA ──────────────────────────────────────── */
+    .cta-section {
+      background: var(--white); padding: 120px 5vw;
+      display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;
+      border-top: 1px solid var(--gray);
+    }
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1.1;
+    }
+    .cta-section h2 em { font-style: normal; color: var(--red); }
+    .cta-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* ─── FOOTER ───────────────────────────────────── */
+    footer { background: var(--black); padding: 72px 5vw 32px; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-brand img { height: 34px; filter: brightness(0) invert(1); }
+    .footer-brand p { margin-top: 18px; font-size: 0.84rem; line-height: 1.75; color: rgba(255,255,255,0.3); max-width: 260px; }
+
+    .footer-col h5 {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul li a { text-decoration: none; font-size: 0.87rem; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--red); }
+
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 32px;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.08em; color: rgba(255,255,255,0.2);
+    }
+    .socials { display: flex; gap: 12px; }
+    .social-btn {
+      width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.3); text-decoration: none; transition: all 0.2s;
+    }
+    .social-btn:hover { border-color: var(--red); color: var(--red); }
+
+    /* ─── REVEAL ───────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 1024px) {
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-right { display: none; }
+      .pub-grid { grid-template-columns: 1fr; }
+      .tier-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .cta-section { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .manifesto { grid-template-columns: 1fr; }
+      .manifesto-num { font-size: 5rem; }
+      .stats-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .stat-block { border-right: none; }
+      .hero-stat-row { display: none; }
+      .pillars-head { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      footer .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">
+    <img src="brand_assests/Di.jpg" alt="Digital Analytics Society" />
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="publishing.html">Publishing</a></li>
+    <li><a href="membership.html">Membership</a></li>
+    <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Digital Analytics Society</div>
+    <h1>
+      Where Data<br/>
+      <span class="line-red">Shapes Community</span>
+    </h1>
+    <p class="hero-sub">
+      A professional society for everyone working across data, analytics, digital strategy and marketing — built on events, content, publishing and genuine community.
+    </p>
+    <div class="hero-actions">
+      <a href="#membership" class="btn btn-red">
+        Join the Society
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#about" class="btn btn-outline-white">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="hero-scroll-line"></span>
+    Scroll to explore
+  </div>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="2400" data-suffix="+">0</div>
+      <div class="hero-stat-label">Members</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="48" data-suffix="+">0</div>
+      <div class="hero-stat-label">Events</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="12" data-suffix="+">0</div>
+      <div class="hero-stat-label">Books</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Data Analytics<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Digital Marketing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Community Events<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Publishing House<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Knowledge Sharing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Membership Network<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Industry Insights<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Data Analytics<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Digital Marketing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Community Events<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Publishing House<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Knowledge Sharing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Membership Network<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Industry Insights<span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto reveal">
+  <div class="manifesto-num">01</div>
+  <div class="manifesto-text">
+    <blockquote>"Data is not just a business function. It's a language — and we're building the community that speaks it fluently."</blockquote>
+    <p>The Digital Analytics Society was founded on the belief that the best ideas in data and digital happen when the right people are in the same room. We build that room — physically, virtually, and in print.</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="section-tag reveal">Who We Are</div>
+      <h2 class="section-h reveal">More than a society.<br/>It's a movement.</h2>
+      <p class="section-p reveal">
+        We bring together professionals, practitioners, and thought leaders from across data, analytics, digital strategy, and marketing. Through events, content, publishing and peer connection — we accelerate careers and advance the field.
+      </p>
+      <div class="about-features">
+        <div class="about-feat reveal">
+          <span class="feat-index mono">01</span>
+          <div>
+            <h4>Events & Gatherings</h4>
+            <p>Flagship conferences, intimate roundtables, and virtual sessions with the brightest minds in data and digital.</p>
+          </div>
+        </div>
+        <div class="about-feat reveal">
+          <span class="feat-index mono">02</span>
+          <div>
+            <h4>Content & Publishing</h4>
+            <p>A full publishing arm producing books, reports, and articles by and for our community — always practical, always sharp.</p>
+          </div>
+        </div>
+        <div class="about-feat reveal">
+          <span class="feat-index mono">03</span>
+          <div>
+            <h4>Membership Network</h4>
+            <p>A curated professional network of peers across industries — connecting people who move data and digital forward.</p>
+          </div>
+        </div>
+        <div class="about-feat reveal">
+          <span class="feat-index mono">04</span>
+          <div>
+            <h4>Community Building</h4>
+            <p>Mentorship, peer groups, forums, and ongoing activities that make belonging feel real, not performative.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-visual-grid">
+        <div class="av-card" style="background: var(--red);">
+          <div>
+            <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px;">Active Members</div>
+            <div class="av-card-num">2.4K<span style="font-size:1.2rem;">+</span></div>
+          </div>
+          <div>
+            <div class="mini-bars">
+              <div class="mini-bar" style="height:35%"></div>
+              <div class="mini-bar" style="height:55%"></div>
+              <div class="mini-bar" style="height:45%"></div>
+              <div class="mini-bar a" style="height:72%"></div>
+              <div class="mini-bar" style="height:60%"></div>
+              <div class="mini-bar a" style="height:85%"></div>
+              <div class="mini-bar a" style="height:100%"></div>
+            </div>
+            <div class="av-card-label">Growing year-on-year</div>
+          </div>
+        </div>
+        <div class="av-card">
+          <div class="av-card-num" style="font-size:1.8rem;">48<span style="font-size:1rem;color:var(--red);">+</span></div>
+          <div class="av-card-label">Events Hosted</div>
+        </div>
+        <div class="av-card">
+          <div class="av-card-num" style="font-size:1.8rem;">12<span style="font-size:1rem;color:var(--red);">+</span></div>
+          <div class="av-card-label">Books Published</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="pillars-head">
+    <div>
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-h">Four pillars.<br/>One community.</h2>
+    </div>
+    <p class="pillars-head-right">
+      Everything we do is built around four interconnected activities that together create a rich, ongoing ecosystem for the data and digital world.
+    </p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar reveal">
+      <div class="pillar-index mono">01 / 04</div>
+      <div class="pillar-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div>
+        <h3>Events</h3>
+        <p>Flagship conferences, workshops, and meetups — curated experiences that spark conversations and forge lasting professional bonds.</p>
+      </div>
+      <a href="events.html" class="pillar-arrow mono">Explore events</a>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-index mono">02 / 04</div>
+      <div class="pillar-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div>
+        <h3>Content</h3>
+        <p>Curated articles, case studies, research and multimedia content produced by community practitioners — always applicable, never generic.</p>
+      </div>
+      <a href="community.html" class="pillar-arrow mono">Browse content</a>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-index mono">03 / 04</div>
+      <div class="pillar-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <h3>Memberships</h3>
+        <p>Access to an exclusive network, premium content, event benefits, and publishing opportunities — tailored to where you are in your career.</p>
+      </div>
+      <a href="membership.html" class="pillar-arrow mono">View plans</a>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-index mono">04 / 04</div>
+      <div class="pillar-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </div>
+      <div>
+        <h3>Community</h3>
+        <p>Mentorship, peer circles, online forums and IRL gatherings — building relationships that exist beyond the event or the feed.</p>
+      </div>
+      <a href="community.html" class="pillar-arrow mono">Get connected</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-block reveal">
+      <div class="stat-block-num" data-count="2400" data-suffix="+">0</div>
+      <div class="stat-block-label">Active Members</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-block-num" data-count="48" data-suffix="+">0</div>
+      <div class="stat-block-label">Events Hosted</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-block-num" data-count="12" data-suffix="+">0</div>
+      <div class="stat-block-label">Books Published</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-block-num" data-count="30" data-suffix="+">0</div>
+      <div class="stat-block-label">Expert Speakers</div>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLISHING -->
+<section class="publishing" id="publishing">
+  <div class="section-tag reveal">Publishing House</div>
+  <h2 class="section-h reveal">We amplify<br/>voices in data.</h2>
+  <div class="pub-grid">
+    <div class="pub-steps">
+      <div class="pub-step reveal">
+        <div class="pub-step-num mono">01</div>
+        <div>
+          <h4>Book Publishing</h4>
+          <p>End-to-end support for authors in the data and digital space — from manuscript development to distribution and community-led promotion.</p>
+        </div>
+      </div>
+      <div class="pub-step reveal">
+        <div class="pub-step-num mono">02</div>
+        <div>
+          <h4>Editorial & Production</h4>
+          <p>Professional editing, design, and production services. Your ideas reach readers in their strongest form.</p>
+        </div>
+      </div>
+      <div class="pub-step reveal">
+        <div class="pub-step-num mono">03</div>
+        <div>
+          <h4>Community Distribution</h4>
+          <p>Direct access to thousands of engaged practitioners — the exact readership your book deserves, already assembled.</p>
+        </div>
+      </div>
+      <div class="pub-step reveal">
+        <div class="pub-step-num mono">04</div>
+        <div>
+          <h4>Author Mentorship</h4>
+          <p>First-time authors are paired with experienced voices to navigate the publishing process with clarity and confidence.</p>
+        </div>
+      </div>
+      <div style="margin-top:40px;">
+        <a href="publishing.html" class="btn btn-outline-dark reveal">Publish with DAS <span>→</span></a>
+      </div>
+    </div>
+    <div class="pub-books reveal">
+      <div class="book">
+        <div class="book-genre">Analytics</div>
+        <h4>The Analytics Playbook</h4>
+        <p>Strategic frameworks for modern data-driven organisations navigating complexity</p>
+      </div>
+      <div class="book">
+        <div class="book-genre">Marketing</div>
+        <h4>Digital-First Marketing</h4>
+        <p>Building measurable, durable campaigns in a privacy-first world</p>
+      </div>
+      <div class="book">
+        <div class="book-genre">Leadership</div>
+        <h4>Data Culture</h4>
+        <p>How to embed analytics thinking across every layer of an organisation</p>
+      </div>
+      <div class="book">
+        <div class="book-genre">Data Science</div>
+        <h4>The Attribution Problem</h4>
+        <p>Solving multi-touch attribution across complex, modern customer journeys</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="membership" id="membership">
+  <div class="section-tag">Membership</div>
+  <h2 class="section-h">Find your place<br/>in the society.</h2>
+  <p class="membership-intro">Whether you're just starting out or leading a team, there's a membership for where you are right now.</p>
+  <div class="tier-grid">
+    <div class="tier reveal">
+      <div class="tier-label mono">Community / Free</div>
+      <div class="tier-price">£0</div>
+      <div class="tier-period">Forever free</div>
+      <div class="tier-name">Community</div>
+      <div class="tier-desc">Start here. Access the basics and get a feel for the DAS community.</div>
+      <ul class="tier-features">
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Community newsletter</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Public events access</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Member directory listing</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Community forums</li>
+      </ul>
+      <a href="#" class="btn btn-tier-outline">Get Started</a>
+    </div>
+    <div class="tier featured reveal">
+      <div class="tier-label mono">Professional / Most Popular</div>
+      <div class="tier-price"><sup>£</sup>12</div>
+      <div class="tier-period">per month, billed annually</div>
+      <div class="tier-name">Professional</div>
+      <div class="tier-desc">Everything you need to learn, connect, and grow within the DAS ecosystem.</div>
+      <ul class="tier-features">
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Everything in Community</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Premium content library</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Event discounts & early access</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Private member forums</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Publishing submission rights</li>
+      </ul>
+      <a href="#" class="btn btn-tier-white">Join Now</a>
+    </div>
+    <div class="tier reveal">
+      <div class="tier-label mono">Corporate / Teams</div>
+      <div class="tier-price">Custom</div>
+      <div class="tier-period">tailored for your team</div>
+      <div class="tier-name">Corporate</div>
+      <div class="tier-desc">Bring the DAS community to your whole organisation with team access and branded benefits.</div>
+      <ul class="tier-features">
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Multiple member seats</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Event sponsorship options</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Priority publishing slots</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Custom onboarding</li>
+      </ul>
+      <a href="#" class="btn btn-tier-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section reveal">
+  <h2>Ready to join a community that <em>actually talks data</em>?</h2>
+  <div class="cta-btns">
+    <a href="#membership" class="btn btn-red">Join Today</a>
+    <a href="#pillars" class="btn btn-outline-dark">Explore More</a>
+  </div>
+</div>
+
+<!-- FOUNDER STRIP -->
+<section style="background:var(--off-white);padding:64px 5vw;border-top:1px solid var(--gray);">
+  <div style="display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:center;max-width:1200px;">
+    <img src="brand_assests/width_1600.jpeg" alt="Steen Rasmussen" style="width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid var(--red);" />
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Founder</div>
+      <h3 style="font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:6px;">Steen Rasmussen</h3>
+      <p style="font-size:0.87rem;color:#666;line-height:1.6;max-width:560px;">Global authority on digital analytics with 20+ years experience. Co-founder of IIH Nordic, pioneer of the data-driven four-day work week, and the person behind Web Analytics Wednesday — grown from 30 to 400+ practitioners.</p>
+    </div>
+    <a href="about.html" class="btn btn-outline-dark" style="white-space:nowrap;">Meet Steen →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="brand_assests/Di.jpg" alt="Digital Analytics Society" />
+      <p>A professional society for everyone with a link to data, analytics, digital and marketing.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Community</h5>
+      <ul>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="membership.html">Memberships</a></li>
+        <li><a href="community.html">Member Directory</a></li>
+        <li><a href="community.html">Forums</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Publishing</h5>
+      <ul>
+        <li><a href="publishing.html">Our Books</a></li>
+        <li><a href="publishing.html">Publish With Us</a></li>
+        <li><a href="publishing.html">Editorial Process</a></li>
+        <li><a href="publishing.html">Author Profiles</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Organisation</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Digital Analytics Society</span>
+    <div class="socials">
+      <a class="social-btn" href="#" aria-label="LinkedIn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a class="social-btn" href="#" aria-label="X / Twitter">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a class="social-btn" href="#" aria-label="Instagram">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── HERO CANVAS — animated data network ─────────────── */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let nodes = [], W, H, raf;
+  const NODE_COUNT = 55, MAX_DIST = 160, SPEED = 0.35;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function init() {
+    nodes = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * SPEED,
+        vy: (Math.random() - 0.5) * SPEED,
+        r: Math.random() * 2.5 + 1,
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // move
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+    // edges
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.5;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(230,57,70,${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+    // nodes
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(230,57,70,0.7)';
+      ctx.fill();
+    });
+    raf = requestAnimationFrame(draw);
+  }
+
+  resize(); init(); draw();
+  window.addEventListener('resize', () => { resize(); init(); });
+})();
+
+/* ── NAV LIGHT/DARK ──────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const dark = document.querySelector('.hero').getBoundingClientRect().bottom > 0;
+  nav.classList.toggle('light', !dark);
+});
+
+/* ── REVEAL ON SCROLL ────────────────────────────────── */
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), (e.target.dataset.d || 0) * 80);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach((el, i) => { el.dataset.d = i % 5; revealObs.observe(el); });
+
+/* ── COUNTER ANIMATION ───────────────────────────────── */
+function animCount(el) {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const dur = 1600;
+  let start = null;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = Math.floor(ease * target);
+    el.textContent = val >= 1000 ? (val/1000).toFixed(1) + 'K' + suffix : val + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animCount(e.target);
+      counterObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+/* ── MOBILE NAV ──────────────────────────────────────── */
+function toggleNav() {
+  const links = document.getElementById('navLinks');
+  const open = links.style.display === 'flex';
+  links.style.display = open ? 'none' : 'flex';
+  if (!open) {
+    links.style.flexDirection = 'column';
+    links.style.position = 'fixed';
+    links.style.top = '68px';
+    links.style.left = '0'; links.style.right = '0';
+    links.style.background = '#0f0f0f';
+    links.style.padding = '24px 5vw 32px';
+    links.style.gap = '20px';
+    links.style.borderBottom = '1px solid rgba(255,255,255,0.07)';
+    links.style.zIndex = '199';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publishing — Digital Analytics Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pub-section { padding: 80px 5vw; }
+    .pub-section.dark { background: var(--black); }
+    .pub-section.off { background: var(--off-white); }
+
+    /* PROCESS */
+    .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+    .process-steps { display: flex; flex-direction: column; gap: 0; }
+    .process-step { display: grid; grid-template-columns: 52px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .process-step:last-child { border-bottom: none; }
+    .process-num { font-family: 'DM Mono', monospace; font-size: 1.3rem; font-weight: 500; color: #444; line-height: 1; transition: color 0.3s; }
+    .process-step:hover .process-num { color: var(--red); }
+    .process-step h4 { font-size: 0.97rem; font-weight: 700; color: white; margin-bottom: 7px; }
+    .process-step p { font-size: 0.85rem; line-height: 1.75; color: rgba(255,255,255,0.4); }
+
+    /* BOOKS CATALOGUE */
+    .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    .book-full { background: var(--black); border-radius: 8px; padding: 32px 28px; border-left: 4px solid var(--red); transition: transform 0.3s, box-shadow 0.3s; }
+    .book-full:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
+    .book-full-genre { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+    .book-full h3 { font-size: 1.05rem; font-weight: 700; color: white; line-height: 1.3; margin-bottom: 10px; }
+    .book-full p { font-size: 0.83rem; line-height: 1.7; color: rgba(255,255,255,0.4); }
+
+    /* WHY PUBLISH */
+    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--gray); margin-top: 48px; }
+    .why-card { background: white; padding: 36px 32px; }
+    .why-icon { width: 44px; height: 44px; background: #FEF0F1; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--red); margin-bottom: 20px; }
+    .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .why-card p { font-size: 0.87rem; line-height: 1.75; color: #666; }
+
+    @media (max-width: 1024px) { .process-grid { grid-template-columns: 1fr; } .books-grid { grid-template-columns: 1fr 1fr; } .why-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .books-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="brand_assests/Di.jpg" alt="Digital Analytics Society" /></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="publishing.html" class="active">Publishing</a></li>
+    <li><a href="membership.html">Membership</a></li>
+    <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-tag">Publishing House</div>
+  <h1>We amplify voices<br/>in data &amp; digital.</h1>
+  <p>DAS is more than a community — it's a platform. We help practitioners, researchers, and thought leaders share their expertise with the audiences that need it most.</p>
+</div>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Book Publishing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Editorial Support<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Community Distribution<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Author Mentorship<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Book Publishing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Editorial Support<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Community Distribution<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Author Mentorship<span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="pub-section dark">
+  <div class="section-tag light reveal">How It Works</div>
+  <h2 class="section-h white reveal">From manuscript<br/>to community shelf.</h2>
+  <div class="process-grid">
+    <div class="process-steps">
+      <div class="process-step reveal"><div class="process-num mono">01</div><div><h4>Submit Your Idea</h4><p>Share your manuscript or proposal. We look for practical insight, clear point-of-view, and relevance to the data and digital community.</p></div></div>
+      <div class="process-step reveal"><div class="process-num mono">02</div><div><h4>Editorial Review</h4><p>Our editorial team assesses your submission and provides structured feedback — even if we don't publish, you'll leave with clarity on your manuscript.</p></div></div>
+      <div class="process-step reveal"><div class="process-num mono">03</div><div><h4>Development & Editing</h4><p>Professional editing, structure development, and production — we bring your ideas into their strongest possible form.</p></div></div>
+      <div class="process-step reveal"><div class="process-num mono">04</div><div><h4>Design & Production</h4><p>Cover design, interior layout, and print/digital formatting. Your book is a product — we treat it like one.</p></div></div>
+      <div class="process-step reveal"><div class="process-num mono">05</div><div><h4>Launch & Distribution</h4><p>Direct access to our community of 2,400+ members, event promotion, and distribution through our publishing partnerships.</p></div></div>
+    </div>
+    <div style="padding-top:8px;" class="reveal">
+      <div style="background:#161616;border-radius:10px;padding:40px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Why Publish with DAS</div>
+        <p style="font-size:1.1rem;font-weight:700;color:white;line-height:1.4;margin-bottom:20px;font-family:'Poppins',sans-serif;">"Your readership already exists. We just connect you to it."</p>
+        <p style="font-size:0.87rem;line-height:1.8;color:rgba(255,255,255,0.4);margin-bottom:28px;">Most publishers put your book in a market and hope for the best. We publish into a pre-built community of practitioners who are actively looking for exactly what you've written.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.85rem;color:rgba(255,255,255,0.5);"><span style="width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0;"></span>2,400+ engaged practitioner readers</div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.85rem;color:rgba(255,255,255,0.5);"><span style="width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0;"></span>Event and conference launch support</div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.85rem;color:rgba(255,255,255,0.5);"><span style="width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0;"></span>Author mentorship for first-time writers</div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.85rem;color:rgba(255,255,255,0.5);"><span style="width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0;"></span>Print, ebook, and community PDF formats</div>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="membership.html" class="btn btn-red">Submit Your Manuscript →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOGUE -->
+<section class="pub-section off">
+  <div class="section-tag reveal">Our Catalogue</div>
+  <h2 class="section-h reveal">Books by the community,<br/>for the community.</h2>
+  <div class="books-grid">
+    <div class="book-full reveal">
+      <div class="book-full-genre">Analytics</div>
+      <h3>The Analytics Playbook</h3>
+      <p>Strategic frameworks for modern data-driven organisations navigating complexity and competing priorities.</p>
+    </div>
+    <div class="book-full reveal">
+      <div class="book-full-genre">Marketing</div>
+      <h3>Digital-First Marketing</h3>
+      <p>Building measurable, durable campaigns in a privacy-first, cookieless world.</p>
+    </div>
+    <div class="book-full reveal">
+      <div class="book-full-genre">Leadership</div>
+      <h3>Data Culture</h3>
+      <p>How to embed analytics thinking across every layer of an organisation — not just the data team.</p>
+    </div>
+    <div class="book-full reveal">
+      <div class="book-full-genre">Data Science</div>
+      <h3>The Attribution Problem</h3>
+      <p>Solving multi-touch attribution across complex, modern customer journeys with practical frameworks.</p>
+    </div>
+    <div class="book-full reveal">
+      <div class="book-full-genre">Operations</div>
+      <h3>The Four-Day Data Week</h3>
+      <p>How data-driven operational efficiency unlocked the 30-hour work week — a practitioner's story.</p>
+    </div>
+    <div class="book-full reveal" style="display:flex;align-items:center;justify-content:center;border:1px dashed rgba(0,0,0,0.12);border-left:1px dashed rgba(0,0,0,0.12);background:transparent;">
+      <div style="text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(0,0,0,0.3);margin-bottom:12px;">Your book here</div>
+        <a href="membership.html" class="btn btn-outline-dark" style="font-size:0.78rem;">Submit a Manuscript →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PUBLISH -->
+<section class="pub-section">
+  <div class="section-tag reveal">Why Publish with DAS</div>
+  <h2 class="section-h reveal">Everything a practitioner-<br/>author needs.</h2>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h3>Built-in Readership</h3>
+      <p>2,400+ active practitioners who are already engaged with data and digital content — your ideal audience, already assembled.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <h3>Professional Editorial</h3>
+      <p>Full editing, structural development, and production support. We make your ideas reader-ready without losing your voice.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <h3>Event Launch Support</h3>
+      <p>Launch your book at a DAS event, get featured in our content programme, and reach practitioners in the room and online.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+      <h3>Author Mentorship</h3>
+      <p>First-time authors are paired with experienced community voices to navigate the publishing process with confidence.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section reveal">
+  <h2>Have a book in you?<br/><em>Let's get it out.</em></h2>
+  <div class="cta-btns">
+    <a href="membership.html" class="btn btn-red">Submit Your Manuscript</a>
+    <a href="about.html" class="btn btn-outline-dark">Meet the Team</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="brand_assests/Di.jpg" alt="Digital Analytics Society" /><p>A professional society for everyone with a link to data, analytics, digital and marketing.</p></div>
+    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
+    <div class="footer-col"><h5>Publishing</h5><ul><li><a href="publishing.html">Our Books</a></li><li><a href="publishing.html">Publish With Us</a></li></ul></div>
+    <div class="footer-col"><h5>Organisation</h5><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Digital Analytics Society</span><div class="socials"><a class="social-btn" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div></div>
+</footer>
+<script>
+const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('light',document.querySelector('.page-hero').getBoundingClientRect().bottom<68));
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+function toggleNav(){const l=document.getElementById('navLinks');const o=l.style.display==='flex';l.style.display=o?'none':'flex';if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';}}
+</script>
+</body>
+</html>

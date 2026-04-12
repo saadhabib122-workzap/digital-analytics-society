@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community — Digital Analytics Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .comm-section { padding: 80px 5vw; }
+    .comm-section.dark { background: var(--black); }
+    .comm-section.off { background: var(--off-white); }
+
+    /* HOW IT WORKS */
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray); margin-top: 48px; }
+    .how-card { background: white; padding: 40px 32px; }
+    .how-num { font-family: 'DM Mono', monospace; font-size: 2.4rem; font-weight: 500; color: var(--gray); line-height: 1; margin-bottom: 20px; }
+    .how-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .how-card p { font-size: 0.87rem; line-height: 1.75; color: #666; }
+
+    /* CONTENT PILLARS */
+    .content-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+    .content-card { border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 36px 30px; transition: border-color 0.3s; }
+    .content-card:hover { border-color: var(--red); }
+    .content-card-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+    .content-card h3 { font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 10px; }
+    .content-card p { font-size: 0.87rem; line-height: 1.75; color: rgba(255,255,255,0.4); }
+
+    /* MENTORSHIP */
+    .mentor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+    .mentor-steps { display: flex; flex-direction: column; gap: 0; }
+    .mentor-step { display: grid; grid-template-columns: 52px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--gray); }
+    .mentor-step:last-child { border-bottom: none; }
+    .mentor-step-num { font-family: 'DM Mono', monospace; font-size: 1.2rem; font-weight: 500; color: #bbb; transition: color 0.3s; }
+    .mentor-step:hover .mentor-step-num { color: var(--red); }
+    .mentor-step h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .mentor-step p { font-size: 0.85rem; line-height: 1.7; color: #777; }
+    .mentor-visual { background: var(--black); border-radius: 12px; padding: 40px; }
+    .mentor-visual h3 { font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 20px; }
+    .mentor-quote { font-size: 0.9rem; line-height: 1.75; color: rgba(255,255,255,0.45); font-style: italic; border-left: 2px solid var(--red); padding-left: 18px; margin-bottom: 20px; }
+    .mentor-author { font-size: 0.78rem; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; color: rgba(255,255,255,0.3); }
+
+    @media (max-width: 1024px) { .how-grid { grid-template-columns: 1fr; } .content-grid { grid-template-columns: 1fr; } .mentor-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="brand_assests/Di.jpg" alt="Digital Analytics Society" /></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="community.html" class="active">Community</a></li>
+    <li><a href="publishing.html">Publishing</a></li>
+    <li><a href="membership.html">Membership</a></li>
+    <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-tag">Community</div>
+  <h1>The network that<br/>goes beyond the feed.</h1>
+  <p>Real connections, shared knowledge, and a place where data professionals at every level can learn, contribute, and grow — together.</p>
+</div>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Member Forums<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Peer Circles<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Mentorship<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Content Library<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Networking<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Member Forums<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Peer Circles<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Mentorship<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Content Library<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Networking<span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="comm-section">
+  <div class="section-tag reveal">How it Works</div>
+  <h2 class="section-h reveal">Community that's<br/>built to last.</h2>
+  <div class="how-grid">
+    <div class="how-card reveal">
+      <div class="how-num">01</div>
+      <h3>Join & Get Matched</h3>
+      <p>When you join DAS, you're matched with relevant peer groups based on your role, industry, and goals — not just your job title.</p>
+    </div>
+    <div class="how-card reveal">
+      <div class="how-num">02</div>
+      <h3>Engage & Contribute</h3>
+      <p>Access private forums, attend events, contribute articles, and participate in group discussions — on your terms and at your pace.</p>
+    </div>
+    <div class="how-card reveal">
+      <div class="how-num">03</div>
+      <h3>Grow & Give Back</h3>
+      <p>As you progress, mentor newer members, host sessions, or publish with us. The community grows when everyone gives something back.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT PILLARS -->
+<section class="comm-section dark">
+  <div class="section-tag light reveal">Content & Knowledge</div>
+  <h2 class="section-h white reveal">Practical content<br/>from real practitioners.</h2>
+  <div class="content-grid">
+    <div class="content-card reveal">
+      <div class="content-card-tag mono">Articles & Analysis</div>
+      <h3>Deep Dives</h3>
+      <p>Rigorous, long-form articles written by community members who are actively solving the problems they write about. No filler, no clickbait.</p>
+    </div>
+    <div class="content-card reveal">
+      <div class="content-card-tag mono">Case Studies</div>
+      <h3>Real Stories</h3>
+      <p>Documented implementations and post-mortems from practitioners who've built measurement frameworks, changed culture, and driven growth with data.</p>
+    </div>
+    <div class="content-card reveal">
+      <div class="content-card-tag mono">Research & Reports</div>
+      <h3>State of the Industry</h3>
+      <p>Annual reports and research papers produced by the DAS community — giving you a baseline on where the industry actually stands.</p>
+    </div>
+    <div class="content-card reveal">
+      <div class="content-card-tag mono">Discussions & Q&A</div>
+      <h3>Community Forums</h3>
+      <p>Ask questions, share challenges, and get answers from people who've been there. Private, moderated, and signal-over-noise by design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="2400" data-suffix="+">0</div><div class="stat-block-label">Active Members</div></div>
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="70" data-suffix="%">0</div><div class="stat-block-label">Participation Rate</div></div>
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="400" data-suffix="+">0</div><div class="stat-block-label">Forum Discussions</div></div>
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="30" data-suffix="+">0</div><div class="stat-block-label">Expert Mentors</div></div>
+  </div>
+</div>
+
+<!-- MENTORSHIP -->
+<section class="comm-section off">
+  <div class="section-tag reveal">Mentorship Programme</div>
+  <h2 class="section-h reveal">Grow faster with<br/>the right guide.</h2>
+  <div class="mentor-grid">
+    <div class="mentor-steps">
+      <div class="mentor-step reveal">
+        <div class="mentor-step-num mono">01</div>
+        <div><h4>Apply & Be Matched</h4><p>Tell us your goals and where you are in your journey. We match you with a mentor based on your specific area of focus.</p></div>
+      </div>
+      <div class="mentor-step reveal">
+        <div class="mentor-step-num mono">02</div>
+        <div><h4>Regular Check-ins</h4><p>Monthly sessions with your mentor — structured around your goals, not generic advice. Real conversations with real practitioners.</p></div>
+      </div>
+      <div class="mentor-step reveal">
+        <div class="mentor-step-num mono">03</div>
+        <div><h4>Community Learning</h4><p>Beyond one-to-one sessions, join group cohorts, peer circles, and community workshops for broader learning.</p></div>
+      </div>
+      <div class="mentor-step reveal">
+        <div class="mentor-step-num mono">04</div>
+        <div><h4>Become a Mentor</h4><p>As you grow, give back. Senior members are invited to mentor the next generation of data professionals.</p></div>
+      </div>
+    </div>
+    <div class="mentor-visual reveal">
+      <h3>What members say</h3>
+      <p class="mentor-quote">"The DAS community gave me access to people I never would have met otherwise — practitioners who'd already solved the exact problems I was facing."</p>
+      <p class="mentor-author mono">— DAS Professional Member</p>
+      <div style="margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);">
+        <p class="mentor-quote">"I joined for the events, stayed for the community. The forums alone are worth the membership."</p>
+        <p class="mentor-author mono">— DAS Community Member</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section reveal">
+  <h2>Ready to join a community that<br/><em>actually talks data</em>?</h2>
+  <div class="cta-btns">
+    <a href="membership.html" class="btn btn-red">Join the Society</a>
+    <a href="events.html" class="btn btn-outline-dark">See Upcoming Events</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="brand_assests/Di.jpg" alt="Digital Analytics Society" /><p>A professional society for everyone with a link to data, analytics, digital and marketing.</p></div>
+    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
+    <div class="footer-col"><h5>Publishing</h5><ul><li><a href="publishing.html">Our Books</a></li><li><a href="publishing.html">Publish With Us</a></li></ul></div>
+    <div class="footer-col"><h5>Organisation</h5><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Digital Analytics Society</span><div class="socials"><a class="social-btn" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div></div>
+</footer>
+<script>
+const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('light',document.querySelector('.page-hero').getBoundingClientRect().bottom<68));
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+const cntObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const t=parseInt(e.target.dataset.count),s=e.target.dataset.suffix||'',d=1600;let st=null;const f=ts=>{if(!st)st=ts;const p=Math.min((ts-st)/d,1),ea=1-Math.pow(1-p,3),v=Math.floor(ea*t);e.target.textContent=v>=1000?(v/1000).toFixed(1)+'K'+s:v+s;if(p<1)requestAnimationFrame(f);};requestAnimationFrame(f);cntObs.unobserve(e.target);}});},{threshold:0.5});document.querySelectorAll('[data-count]').forEach(el=>cntObs.observe(el));
+function toggleNav(){const l=document.getElementById('navLinks');const o=l.style.display==='flex';l.style.display=o?'none':'flex';if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';}}
+</script>
+</body>
+</html>

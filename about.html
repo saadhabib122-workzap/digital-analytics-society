@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Digital Analytics Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ─── MISSION ─────────────────────────────────── */
+    .mission { padding: 80px 5vw; background: var(--white); }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .mission-values { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
+    .mission-val { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--gray); }
+    .mission-val:last-child { border-bottom: none; }
+    .val-num { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--red); flex-shrink: 0; margin-top: 2px; }
+    .mission-val h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 5px; }
+    .mission-val p { font-size: 0.85rem; line-height: 1.7; color: #777; }
+    .mission-right { padding-top: 8px; }
+    .mission-right blockquote { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2vw, 1.7rem); line-height: 1.4; letter-spacing: -0.02em; border-left: 3px solid var(--red); padding-left: 24px; margin-bottom: 24px; }
+    .mission-right p { font-size: 0.95rem; line-height: 1.85; color: #666; margin-bottom: 16px; }
+
+    /* ─── FOUNDER ─────────────────────────────────── */
+    .founder { padding: 80px 5vw; background: var(--black); }
+    .founder-grid { display: grid; grid-template-columns: 420px 1fr; gap: 80px; align-items: start; margin-top: 48px; }
+    .founder-photo-wrap { position: relative; }
+    .founder-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; border-radius: 8px; display: block; }
+    .founder-photo-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--red); color: white; border-radius: 8px;
+      padding: 20px 24px; font-family: 'Poppins', sans-serif;
+    }
+    .founder-photo-badge-num { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .founder-photo-badge-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; opacity: 0.85; margin-top: 4px; }
+
+    .founder-content { padding-top: 8px; }
+    .founder-name { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; color: white; line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .founder-title { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 28px; }
+    .founder-bio { font-size: 0.97rem; line-height: 1.85; color: rgba(255,255,255,0.55); margin-bottom: 36px; }
+    .founder-bio p { margin-bottom: 14px; }
+
+    .founder-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); margin-bottom: 40px; border-radius: 6px; overflow: hidden; }
+    .f-stat { background: #161616; padding: 20px 20px; }
+    .f-stat-num { font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 500; color: white; line-height: 1; margin-bottom: 4px; }
+    .f-stat-num sup { font-size: 0.9rem; color: var(--red); }
+    .f-stat-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+
+    .founder-highlights { display: flex; flex-direction: column; gap: 0; margin-bottom: 36px; }
+    .f-highlight { display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .f-highlight:last-child { border-bottom: none; }
+    .f-highlight-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 6px; }
+    .f-highlight p { font-size: 0.87rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .f-highlight p strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+    .founder-social { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .social-pill {
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 3px;
+      padding: 8px 14px; transition: all 0.2s;
+    }
+    .social-pill:hover { border-color: var(--red); color: var(--red); }
+
+    /* ─── TESTIMONIALS ────────────────────────────── */
+    .testimonials { padding: 80px 5vw; background: var(--off-white); }
+    .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+    .testi-card { background: white; border-radius: 8px; padding: 32px 28px; border: 1px solid var(--gray); }
+    .testi-quote { font-size: 0.95rem; line-height: 1.75; color: #444; font-style: italic; margin-bottom: 20px; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.8rem; color: white; flex-shrink: 0; }
+    .testi-name { font-weight: 700; font-size: 0.85rem; }
+    .testi-role { font-size: 0.75rem; color: var(--gray-mid); }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1024px) {
+      .founder-grid { grid-template-columns: 1fr; }
+      .founder-photo-wrap { max-width: 360px; }
+      .mission-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html">
+    <img src="brand_assests/Di.jpg" alt="Digital Analytics Society" />
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="publishing.html">Publishing</a></li>
+    <li><a href="membership.html">Membership</a></li>
+    <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-tag">About DAS</div>
+  <h1>Built on the belief that<br/>data belongs to everyone.</h1>
+  <p>The Digital Analytics Society is a professional community connecting people across data, analytics, digital strategy and marketing — through events, content, publishing, and genuine human connection.</p>
+</div>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Data Analytics<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Community<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Publishing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Events<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Digital Marketing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Knowledge Sharing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Data Analytics<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Community<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Publishing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Events<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Digital Marketing<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Knowledge Sharing<span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="mission-grid">
+    <div>
+      <div class="section-tag reveal">Our Mission</div>
+      <h2 class="section-h reveal">More than a society.<br/>It's a movement.</h2>
+      <div class="mission-values">
+        <div class="mission-val reveal">
+          <span class="val-num mono">01</span>
+          <div>
+            <h4>Community First</h4>
+            <p>Everything we do starts with people. Relationships, not transactions. Real conversations, not content noise.</p>
+          </div>
+        </div>
+        <div class="mission-val reveal">
+          <span class="val-num mono">02</span>
+          <div>
+            <h4>Practical Knowledge</h4>
+            <p>We share what actually works. Case studies, lived experience, and frameworks that practitioners can apply immediately.</p>
+          </div>
+        </div>
+        <div class="mission-val reveal">
+          <span class="val-num mono">03</span>
+          <div>
+            <h4>Open Access</h4>
+            <p>Data literacy shouldn't be gatekept. We build pathways for people at every stage of their analytics journey.</p>
+          </div>
+        </div>
+        <div class="mission-val reveal">
+          <span class="val-num mono">04</span>
+          <div>
+            <h4>Amplified Voices</h4>
+            <p>Through our publishing arm, we give practitioners a platform — turning expertise into books, reports, and lasting resources.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mission-right reveal">
+      <blockquote>"Data is not just a business function. It's a language — and we're building the community that speaks it fluently."</blockquote>
+      <p>Founded to fill a gap in the market — somewhere between a conference circuit and a LinkedIn group — DAS is built around the idea that the best ideas in data and digital happen when the right people are in the same room.</p>
+      <p>We build that room. Physically, virtually, and in print.</p>
+      <p>From Web Analytics Wednesday meetups that grew from 30 to 400+ practitioners, to a publishing house for data voices that deserve wider reach — DAS is the home for everyone who believes that better decisions come from better data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="2400" data-suffix="+">0</div><div class="stat-block-label">Active Members</div></div>
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="48" data-suffix="+">0</div><div class="stat-block-label">Events Hosted</div></div>
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="12" data-suffix="+">0</div><div class="stat-block-label">Books Published</div></div>
+    <div class="stat-block reveal"><div class="stat-block-num" data-count="20" data-suffix="+">0</div><div class="stat-block-label">Years Experience</div></div>
+  </div>
+</div>
+
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="section-tag light reveal">The Founder</div>
+  <h2 class="section-h white reveal">Meet the person<br/>behind the society.</h2>
+  <div class="founder-grid">
+    <div class="founder-photo-wrap reveal">
+      <img class="founder-photo" src="brand_assests/width_1600.jpeg" alt="Steen Rasmussen" />
+      <div class="founder-photo-badge">
+        <div class="founder-photo-badge-num">20+</div>
+        <div class="founder-photo-badge-label">Years in<br/>Analytics</div>
+      </div>
+    </div>
+    <div class="founder-content">
+      <h2 class="founder-name reveal">Steen Rasmussen</h2>
+      <div class="founder-title reveal">Global Authority on Digital Analytics &amp; Founder, DAS</div>
+      <div class="founder-bio reveal">
+        <p>Steen is a data strategy expert with over 20 years in digital analytics, specialising in translating complexity into clarity. His mission is simple: empower organisations and individuals to make smarter, more human decisions through data.</p>
+        <p>Based in Copenhagen, Steen has spoken at conferences across Silicon Valley, Mumbai, and Europe — bridging data, business strategy, and people in keynotes for Fortune 500 companies and growing startups alike.</p>
+        <p>He co-founded IIH Nordic, a leading Scandinavian digital analytics agency, and pioneered one of the world's first data-driven four-day work weeks — proving that operational efficiency, not longer hours, drives performance. The Digital Analytics Society is his vision for what the global data community should be.</p>
+      </div>
+
+      <div class="founder-stats reveal">
+        <div class="f-stat">
+          <div class="f-stat-num">20<sup>+</sup></div>
+          <div class="f-stat-label">Years Experience</div>
+        </div>
+        <div class="f-stat">
+          <div class="f-stat-num">400<sup>+</sup></div>
+          <div class="f-stat-label">WAW Practitioners</div>
+        </div>
+        <div class="f-stat">
+          <div class="f-stat-num">70<sup>%</sup></div>
+          <div class="f-stat-label">Participation Rate</div>
+        </div>
+      </div>
+
+      <div class="founder-highlights reveal">
+        <div class="f-highlight">
+          <div class="f-highlight-dot"></div>
+          <p><strong>Co-founded IIH Nordic</strong> — one of Scandinavia's leading digital analytics agencies</p>
+        </div>
+        <div class="f-highlight">
+          <div class="f-highlight-dot"></div>
+          <p><strong>Pioneered the data-driven 30-hour, four-day work week</strong> — powered by operational analytics, not reduced productivity</p>
+        </div>
+        <div class="f-highlight">
+          <div class="f-highlight-dot"></div>
+          <p><strong>Grew Web Analytics Wednesday</strong> from 30 to 400+ practitioners sharing real-world knowledge</p>
+        </div>
+        <div class="f-highlight">
+          <div class="f-highlight-dot"></div>
+          <p><strong>International keynote speaker</strong> — Fortune 500 companies, Silicon Valley, Mumbai, and beyond</p>
+        </div>
+        <div class="f-highlight">
+          <div class="f-highlight-dot"></div>
+          <p><strong>Board member and educator</strong> — shaping next-generation analytics talent and strategy</p>
+        </div>
+      </div>
+
+      <div class="founder-social reveal">
+        <a href="https://www.linkedin.com/in/steenrasmussen/" target="_blank" class="social-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://youtube.com/@SteenRasmussenFYI" target="_blank" class="social-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--black)"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.steen.fyi/booking" target="_blank" class="social-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book Steen
+        </a>
+        <a href="https://www.steen.fyi" target="_blank" class="social-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          steen.fyi
+        </a>
+      </div>
+
+      <a href="https://www.steen.fyi/booking" target="_blank" class="btn btn-red reveal">Book Steen to Speak →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-tag reveal">What People Say</div>
+  <h2 class="section-h reveal">Trusted by practitioners<br/>and executives alike.</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <p class="testi-quote">"Steen extracts key information with great speed and ease, creating structure where there was none. An exceptional analytical mind."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MA</div>
+        <div><div class="testi-name">Martin Bo Arndt</div><div class="testi-role">Senior Sourcing Manager, Nordea</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-quote">"Profound understanding of the data landscape combined with a compassionate, results-driven approach. Steen is the real deal."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">HD</div>
+        <div><div class="testi-name">Henrik Dessau</div><div class="testi-role">Executive Manager, Cell Biotech</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-quote">"He navigates the analytics, marketing, and usability realms with remarkable ease — making complexity feel accessible."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SL</div>
+        <div><div class="testi-name">Stefan Mols Lindor</div><div class="testi-role">Consultant, Affinity by Lindor X</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-quote">"Grew our Web Analytics Wednesday attendance from 30 to over 400 practitioners actively sharing knowledge. A genuine community builder."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">TJ</div>
+        <div><div class="testi-name">Thomas Jacobsen</div><div class="testi-role">PSP Data Officer, UN Refugee Agency</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section reveal">
+  <h2>Want to be part of<br/>what <em>Steen is building</em>?</h2>
+  <div class="cta-btns">
+    <a href="membership.html" class="btn btn-red">Join the Society</a>
+    <a href="https://www.steen.fyi/booking" target="_blank" class="btn btn-outline-dark">Book Steen</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="brand_assests/Di.jpg" alt="Digital Analytics Society" />
+      <p>A professional society for everyone with a link to data, analytics, digital and marketing.</p>
+    </div>
+    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
+    <div class="footer-col"><h5>Publishing</h5><ul><li><a href="publishing.html">Our Books</a></li><li><a href="publishing.html">Publish With Us</a></li></ul></div>
+    <div class="footer-col"><h5>Organisation</h5><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Digital Analytics Society</span>
+    <div class="socials">
+      <a class="social-btn" href="https://www.linkedin.com/in/steenrasmussen/" target="_blank" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a class="social-btn" href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('light', document.querySelector('.page-hero').getBoundingClientRect().bottom < 68));
+
+const revObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } }); }, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+const cntObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { const t = parseInt(e.target.dataset.count), s = e.target.dataset.suffix||'', d = 1600; let st = null; const f = ts => { if(!st) st=ts; const p = Math.min((ts-st)/d,1), ea=1-Math.pow(1-p,3), v=Math.floor(ea*t); e.target.textContent = v>=1000?(v/1000).toFixed(1)+'K'+s:v+s; if(p<1) requestAnimationFrame(f); }; requestAnimationFrame(f); cntObs.unobserve(e.target); } }); }, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+
+function toggleNav() { const l=document.getElementById('navLinks'); const o=l.style.display==='flex'; l.style.display=o?'none':'flex'; if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';} }
+</script>
+</body>
+</html>

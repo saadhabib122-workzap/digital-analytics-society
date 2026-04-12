@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership — Digital Analytics Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .mem-section { padding: 80px 5vw; }
+    .mem-section.dark { background: var(--black); }
+    .mem-section.off { background: var(--off-white); }
+
+    /* TIERS */
+    .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); margin-top: 56px; }
+    .tier { background: var(--black); padding: 48px 36px; display: flex; flex-direction: column; }
+    .tier.featured { background: var(--red); }
+    .tier-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+    .tier.featured .tier-label { color: rgba(255,255,255,0.7); }
+    .tier-price { font-family: 'DM Mono', monospace; font-size: 3rem; font-weight: 500; color: white; line-height: 1; margin-bottom: 6px; }
+    .tier-price sup { font-size: 1.4rem; }
+    .tier-period { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-bottom: 28px; }
+    .tier.featured .tier-period { color: rgba(255,255,255,0.6); }
+    .tier-name { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 14px; }
+    .tier-desc { font-size: 0.84rem; line-height: 1.7; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
+    .tier.featured .tier-desc { color: rgba(255,255,255,0.7); }
+    .tier-features { list-style: none; display: flex; flex-direction: column; gap: 0; flex: 1; margin-bottom: 32px; }
+    .tier-feat { display: flex; align-items: center; gap: 12px; font-size: 0.84rem; color: rgba(255,255,255,0.5); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .tier.featured .tier-feat { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.15); }
+    .tier-feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+    .tier.featured .tier-feat-dot { background: white; }
+    .btn-tier-white { background: white; color: var(--black); padding: 14px; text-align: center; border-radius: 3px; justify-content: center; width: 100%; }
+    .btn-tier-white:hover { background: var(--gray); }
+    .btn-tier-outline { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 14px; text-align: center; border-radius: 3px; justify-content: center; width: 100%; }
+    .btn-tier-outline:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+    /* COMPARISON TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 48px; }
+    .compare-table th { padding: 16px 20px; text-align: left; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: #888; border-bottom: 2px solid var(--gray); }
+    .compare-table th:first-child { width: 40%; }
+    .compare-table td { padding: 14px 20px; font-size: 0.87rem; border-bottom: 1px solid var(--gray); color: #555; }
+    .compare-table td:not(:first-child) { text-align: center; font-weight: 600; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .tick { color: var(--red); font-size: 1.1rem; }
+    .compare-table .dash { color: var(--gray); }
+    .compare-table .highlight-col { background: rgba(230,57,70,0.04); }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 48px; max-width: 720px; }
+    .faq-item { border-bottom: 1px solid var(--gray); }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; cursor: pointer; font-weight: 700; font-size: 0.95rem; gap: 20px; }
+    .faq-q svg { flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 0 20px; font-size: 0.87rem; line-height: 1.8; color: #666; }
+    .faq-item.open .faq-a { display: block; }
+
+    @media (max-width: 1024px) { .tier-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html"><img src="brand_assests/Di.jpg" alt="Digital Analytics Society" /></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="publishing.html">Publishing</a></li>
+    <li><a href="membership.html" class="active">Membership</a></li>
+    <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-tag">Membership</div>
+  <h1>Find your place<br/>in the society.</h1>
+  <p>Whether you're just starting out or leading an analytics function, there's a membership level built for where you are right now.</p>
+</div>
+
+<!-- TIERS -->
+<section class="mem-section dark">
+  <div class="section-tag light reveal">Membership Plans</div>
+  <h2 class="section-h white reveal">Invest in your<br/>professional community.</h2>
+  <p style="color:rgba(255,255,255,0.4);font-size:0.95rem;max-width:480px;line-height:1.8;margin-top:12px;" class="reveal">All plans include access to the DAS community. Upgrade anytime.</p>
+  <div class="tier-grid">
+    <div class="tier reveal">
+      <div class="tier-label mono">Community / Free</div>
+      <div class="tier-price">£0</div>
+      <div class="tier-period">Forever free</div>
+      <div class="tier-name">Community</div>
+      <div class="tier-desc">Start here. Access the basics and get a feel for the DAS community before committing.</div>
+      <ul class="tier-features">
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Weekly community newsletter</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Public events access</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Member directory listing</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Public community forums</li>
+      </ul>
+      <a href="#" class="btn btn-tier-outline">Get Started Free</a>
+    </div>
+    <div class="tier featured reveal">
+      <div class="tier-label mono">Professional / Most Popular</div>
+      <div class="tier-price"><sup>£</sup>12</div>
+      <div class="tier-period">per month, billed annually</div>
+      <div class="tier-name">Professional</div>
+      <div class="tier-desc">Everything you need to learn, connect, and grow within the full DAS ecosystem.</div>
+      <ul class="tier-features">
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Everything in Community</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Full premium content library</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Event discounts & early access</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Private member forums</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Mentorship programme access</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Publishing submission rights</li>
+      </ul>
+      <a href="#" class="btn btn-tier-white">Join Now</a>
+    </div>
+    <div class="tier reveal">
+      <div class="tier-label mono">Corporate / Teams</div>
+      <div class="tier-price">Custom</div>
+      <div class="tier-period">tailored for your team</div>
+      <div class="tier-name">Corporate</div>
+      <div class="tier-desc">Bring DAS to your whole organisation with team access, branded benefits, and priority placement.</div>
+      <ul class="tier-features">
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Multiple member seats</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Event sponsorship options</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Priority publishing slots</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Custom onboarding</li>
+        <li class="tier-feat"><span class="tier-feat-dot"></span>Dedicated account manager</li>
+      </ul>
+      <a href="about.html" class="btn btn-tier-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="mem-section off">
+  <div class="section-tag reveal">Compare Plans</div>
+  <h2 class="section-h reveal">Everything, side by side.</h2>
+  <table class="compare-table reveal">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Community</th>
+        <th style="color:var(--red);">Professional</th>
+        <th>Corporate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Community newsletter</td><td class="tick">✓</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Public events access</td><td class="tick">✓</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Member directory</td><td class="tick">✓</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Public forums</td><td class="tick">✓</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Premium content library</td><td class="dash">—</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Event discounts</td><td class="dash">—</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Private member forums</td><td class="dash">—</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Mentorship programme</td><td class="dash">—</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Publishing submission rights</td><td class="dash">—</td><td class="tick highlight-col">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Team seats</td><td class="dash">—</td><td class="dash highlight-col">—</td><td class="tick">✓</td></tr>
+      <tr><td>Event sponsorship</td><td class="dash">—</td><td class="dash highlight-col">—</td><td class="tick">✓</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FAQ -->
+<section class="mem-section">
+  <div class="section-tag reveal">FAQ</div>
+  <h2 class="section-h reveal">Common questions.</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q">Can I cancel my membership at any time? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a">Yes. Professional memberships can be cancelled at any time. Annual plans are non-refundable after the first 30 days, but you retain access until the end of your billing period.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's included in the premium content library? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a">The library includes all DAS-published articles, deep dives, case studies, research reports, and recordings from past events. New content is added regularly by community contributors.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does the mentorship programme work? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a">Professional members can apply for the mentorship programme each quarter. You'll be matched with a mentor based on your goals, role, and area of focus for monthly one-to-one sessions.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does the Corporate plan work? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a">Corporate plans are custom-scoped to your organisation's size and needs. Contact us to discuss seat volumes, event sponsorship, custom onboarding, and publishing benefits for your team.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is there a student or early-career discount? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a">Yes. Students and professionals within two years of starting their career can access a reduced rate. Contact us with your details to receive a discount code before purchasing.</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section reveal">
+  <h2>Start with free.<br/><em>Grow from there.</em></h2>
+  <div class="cta-btns">
+    <a href="#" class="btn btn-red">Join Free Today</a>
+    <a href="community.html" class="btn btn-outline-dark">Explore Community</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="brand_assests/Di.jpg" alt="Digital Analytics Society" /><p>A professional society for everyone with a link to data, analytics, digital and marketing.</p></div>
+    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
+    <div class="footer-col"><h5>Publishing</h5><ul><li><a href="publishing.html">Our Books</a></li><li><a href="publishing.html">Publish With Us</a></li></ul></div>
+    <div class="footer-col"><h5>Organisation</h5><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Digital Analytics Society</span><div class="socials"><a class="social-btn" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div></div>
+</footer>
+<script>
+const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('light',document.querySelector('.page-hero').getBoundingClientRect().bottom<68));
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{q.parentElement.classList.toggle('open');});});
+function toggleNav(){const l=document.getElementById('navLinks');const o=l.style.display==='flex';l.style.display=o?'none':'flex';if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';}}
+</script>
+</body>
+</html>
