@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node tools/review_screenshot.js)",
+      "Bash(node tools/screenshot.js index.html .tmp/page_index.png)",
+      "Bash(git add -A)",
+      "Bash(git commit*)",
+      "Bash(git push*)"
+    ]
+  }
+}
