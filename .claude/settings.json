@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"d:/Data analytics Society\" && git add -A && git diff --cached --quiet || (git commit -m \"deploy: $(date +%H%M)\" && git push)",
+            "statusMessage": "Pushing changes to GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}

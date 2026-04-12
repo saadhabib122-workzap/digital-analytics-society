@@ -66,6 +66,26 @@ credentials.json, token.json  # Google OAuth (gitignored)
 
 **Core principle:** Local files are just for processing. Anything I need to see or use lives in cloud services. Everything in `.tmp/` is disposable.
 
+## Deployment Standard
+
+This project auto-deploys to GitHub Pages. A `Stop` hook in `.claude/settings.json` runs after every Claude response and pushes any changed files to `main`:
+
+```bash
+git add -A && git diff --cached --quiet || (git commit -m "deploy: $(date +%H%M)" && git push)
+```
+
+**What this means in practice:**
+- Every file change made during a session is committed and pushed automatically when Claude finishes responding
+- GitHub Actions then deploys the updated site within ~60 seconds
+- No manual git commands needed
+- Live site: https://saadhabib122-workzap.github.io/digital-analytics-society/
+- Repo: https://github.com/saadhabib122-workzap/digital-analytics-society
+
+**If a push fails** (merge conflict, network issue), re-run manually:
+```bash
+git add -A && git commit -m "manual deploy" && git push
+```
+
 ## Bottom Line
 
 You sit between what I want (workflows) and what actually gets done (tools). Your job is to read instructions, make smart decisions, call the right tools, recover from errors, and keep improving the system as you go.
