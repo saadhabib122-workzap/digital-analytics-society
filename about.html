@@ -93,12 +93,13 @@
     </div>
   </a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html" class="active">About</a></li>
-    <li><a href="events.html">Events</a></li>
     <li><a href="community.html">Community</a></li>
+    <li><a href="events.html">Event Support</a></li>
     <li><a href="publishing.html">Publishing</a></li>
-    <li><a href="membership.html">Membership</a></li>
-    <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="membership.html" class="nav-cta">Membership</a></li>
   </ul>
   <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
@@ -322,7 +323,7 @@
       <p class="footer-tagline">The Data &amp; Digital Community<br/>Connecting Innovation Since 1980</p>
       <p>A professional society for everyone with a link to data, analytics, digital and marketing.</p>
     </div>
-    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
+    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Event Support</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
     <div class="footer-col"><h5>Publishing</h5><ul><li><a href="publishing.html">Our Books</a></li><li><a href="publishing.html">Publish With Us</a></li></ul></div>
     <div class="footer-col"><h5>Organisation</h5><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul></div>
   </div>
@@ -346,7 +347,7 @@ document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 const cntObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { const t = parseInt(e.target.dataset.count), s = e.target.dataset.suffix||'', d = 1600; let st = null; const f = ts => { if(!st) st=ts; const p = Math.min((ts-st)/d,1), ea=1-Math.pow(1-p,3), v=Math.floor(ea*t); e.target.textContent = v>=1000?(v/1000).toFixed(1)+'K'+s:v+s; if(p<1) requestAnimationFrame(f); }; requestAnimationFrame(f); cntObs.unobserve(e.target); } }); }, { threshold: 0.5 });
 document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
 
-function toggleNav() { const l=document.getElementById('navLinks'); const o=l.style.display==='flex'; l.style.display=o?'none':'flex'; if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';} }
+function toggleNav() { const l=document.getElementById('navLinks'); const o=l.style.display==='flex'; l.style.display=o?'none':'flex'; if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:80px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';} }
 </script>
 </body>
 </html>

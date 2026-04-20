@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Digital Analytics Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .login-section { padding: 80px 5vw; }
+    .login-section.dark { background: var(--black); }
+    .login-section.off { background: var(--off-white); }
+
+    /* LOGIN LAYOUT */
+    .login-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: start; margin-top: 56px; max-width: 960px;
+    }
+
+    /* FORM */
+    .login-form-wrap {}
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+    .form-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #888; }
+    .form-input {
+      border: 1px solid var(--gray); border-radius: 4px;
+      padding: 13px 16px; font-family: 'Open Sans', sans-serif; font-size: 0.9rem;
+      color: var(--black); background: white; outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--red); }
+    .form-input::placeholder { color: #bbb; }
+    .form-divider { display: flex; align-items: center; gap: 16px; margin: 24px 0; }
+    .form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: var(--gray); }
+    .form-divider span { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: #bbb; text-transform: uppercase; }
+    .form-forgot { font-size: 0.78rem; color: var(--gray-mid); text-align: right; margin-top: -12px; margin-bottom: 20px; }
+    .form-forgot a { color: var(--red); text-decoration: none; }
+    .form-forgot a:hover { text-decoration: underline; }
+    .form-note { font-size: 0.8rem; color: #888; line-height: 1.65; margin-top: 16px; }
+    .form-note a { color: var(--red); text-decoration: none; }
+    .btn-full { width: 100%; justify-content: center; }
+
+    /* PROFILE PREVIEW */
+    .profile-panel { background: var(--black); border-radius: 12px; padding: 40px; }
+    .profile-panel-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+    .profile-panel h3 { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 8px; line-height: 1.3; }
+    .profile-panel > p { font-size: 0.87rem; line-height: 1.8; color: rgba(255,255,255,0.4); margin-bottom: 32px; }
+    .pref-list { display: flex; flex-direction: column; gap: 0; }
+    .pref-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .pref-item:last-child { border-bottom: none; }
+    .pref-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--red); flex-shrink: 0; }
+    .pref-item h4 { font-size: 0.88rem; font-weight: 700; color: white; margin-bottom: 3px; }
+    .pref-item p { font-size: 0.78rem; line-height: 1.6; color: rgba(255,255,255,0.35); }
+
+    @media (max-width: 1024px) { .login-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html">
+    <img class="logo-dark" src="brand_assests/DAS_Logo_Blackbgversion.png" alt="Digital Analytics Society" />
+    <img class="logo-light" src="brand_assests/DAS_Logo_Final.png" alt="Digital Analytics Society" />
+    <div class="nav-logo-text">
+      <span class="nav-org-name">Digital Analytics Society</span>
+      <span class="nav-tagline">The Data &amp; Digital Community · Connecting Innovation Since 1980</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="events.html">Event Support</a></li>
+    <li><a href="publishing.html">Publishing</a></li>
+    <li><a href="login.html" class="active">Login</a></li>
+    <li><a href="membership.html" class="nav-cta">Membership</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <canvas class="shader-canvas"></canvas>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">Member Access</div>
+    <h1>Welcome back<br/>to the community.</h1>
+    <p>Log in to access your member profile, the private forums, premium content library, mentorship programme, and everything else DAS has to offer.</p>
+  </div>
+</div>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Member Forums<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Premium Content<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Mentorship<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Event Access<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Publishing Rights<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Member Forums<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Premium Content<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Mentorship<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Event Access<span class="marquee-sep"></span></span>
+    <span class="marquee-item">Publishing Rights<span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<section class="login-section">
+  <div class="section-tag reveal">Member Login</div>
+  <h2 class="section-h reveal">Sign in to your<br/>DAS account.</h2>
+  <div class="login-layout">
+    <div class="login-form-wrap reveal">
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" type="email" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="••••••••••" />
+      </div>
+      <div class="form-forgot"><a href="#">Forgot your password?</a></div>
+      <a href="#" class="btn btn-red btn-full">Sign In →</a>
+      <div class="form-divider"><span>or</span></div>
+      <a href="#" class="btn btn-outline-dark btn-full">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        Continue with LinkedIn
+      </a>
+      <p class="form-note">Not a member yet? <a href="membership.html">Join the society →</a></p>
+    </div>
+    <div class="profile-panel reveal">
+      <div class="profile-panel-tag mono">Profile &amp; Preferences</div>
+      <h3>Your member dashboard.<br/>Everything in one place.</h3>
+      <p>Once logged in, manage your membership, update your profile, and control exactly how you engage with the DAS community.</p>
+      <div class="pref-list">
+        <div class="pref-item">
+          <div class="pref-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <h4>Member Profile</h4>
+            <p>Update your bio, role, industry, and contact details. Control what's visible in the member directory.</p>
+          </div>
+        </div>
+        <div class="pref-item">
+          <div class="pref-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <div>
+            <h4>Notifications</h4>
+            <p>Choose which community updates, event invites, and digest emails you want to receive.</p>
+          </div>
+        </div>
+        <div class="pref-item">
+          <div class="pref-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <h4>Events &amp; Bookings</h4>
+            <p>View your upcoming event registrations, past attendance history, and available member discounts.</p>
+          </div>
+        </div>
+        <div class="pref-item">
+          <div class="pref-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div>
+            <h4>Content &amp; Publishing</h4>
+            <p>Access your saved articles, track your submitted manuscripts, and manage your publishing profile.</p>
+          </div>
+        </div>
+        <div class="pref-item">
+          <div class="pref-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <h4>Membership &amp; Billing</h4>
+            <p>Review your current plan, upgrade your membership, or manage your billing details and renewal date.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section reveal">
+  <h2>Not a member yet?<br/><em>Join for free today.</em></h2>
+  <div class="cta-btns">
+    <a href="membership.html" class="btn btn-red">See Membership Plans</a>
+    <a href="community.html" class="btn btn-outline-dark">Explore the Community</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><img src="brand_assests/DAS_Logo_Blackbgversion.png" alt="Digital Analytics Society" /><p class="footer-tagline">The Data &amp; Digital Community<br/>Connecting Innovation Since 1980</p><p>A professional society for everyone with a link to data, analytics, digital and marketing.</p></div>
+    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Event Support</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
+    <div class="footer-col"><h5>Publishing</h5><ul><li><a href="publishing.html">Our Books</a></li><li><a href="publishing.html">Publish With Us</a></li></ul></div>
+    <div class="footer-col"><h5>Organisation</h5><ul><li><a href="about.html">About</a></li><li><a href="login.html">Login</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Digital Analytics Society</span><div class="socials"><a class="social-btn" href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div></div>
+</footer>
+<script src="shader-bg.js"></script>
+<script>
+const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('light',document.querySelector('.page-hero').getBoundingClientRect().bottom<80));
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+function toggleNav(){const l=document.getElementById('navLinks');const o=l.style.display==='flex';l.style.display=o?'none':'flex';if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:80px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';}}
+</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Events | Digital Analytics Society</title>
+  <title>Event Support | Digital Analytics Society</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
@@ -60,12 +60,13 @@
     </div>
   </a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="events.html" class="active">Events</a></li>
     <li><a href="community.html">Community</a></li>
+    <li><a href="events.html" class="active">Event Support</a></li>
     <li><a href="publishing.html">Publishing</a></li>
-    <li><a href="membership.html">Membership</a></li>
-    <li><a href="membership.html" class="nav-cta">Join Now</a></li>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="membership.html" class="nav-cta">Membership</a></li>
   </ul>
   <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
@@ -73,9 +74,9 @@
 <div class="page-hero">
   <canvas class="shader-canvas"></canvas>
   <div class="page-hero-inner">
-    <div class="page-hero-tag">Events & Gatherings</div>
-    <h1>Where the data<br/>community meets.</h1>
-    <p>From flagship conferences to intimate roundtables, curated experiences that spark conversations, share real knowledge, and forge lasting professional bonds.</p>
+    <div class="page-hero-tag">Event Support</div>
+    <h1>Programming, speakers,<br/>and the full picture.</h1>
+    <p>DAS helps organisations and communities build events worth attending. From speaker curation and event programming to marketing and community reach, we bring the data and digital world to the room.</p>
   </div>
 </div>
 
@@ -94,9 +95,35 @@
   </div>
 </div>
 
+<!-- EVENT SUPPORT SERVICES -->
+<section class="events-section off">
+  <div class="section-tag reveal">How We Help</div>
+  <h2 class="section-h reveal">End-to-end event<br/>support for the data world.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray);margin-top:48px;">
+    <div style="background:white;padding:40px 32px;" class="reveal">
+      <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">01</div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">Event Programming</h3>
+      <p style="font-size:0.87rem;line-height:1.75;color:#666;">We help design event formats that work for data and digital audiences. From full-day conferences to intimate roundtables, we build agendas that deliver real value and spark genuine conversation.</p>
+    </div>
+    <div style="background:white;padding:40px 32px;" class="reveal">
+      <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">02</div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">Speaker Curation</h3>
+      <p style="font-size:0.87rem;line-height:1.75;color:#666;">Access our network of 2,400+ practitioners and thought leaders across analytics, digital strategy, and marketing. We match the right voices to your audience, topic, and format.</p>
+    </div>
+    <div style="background:white;padding:40px 32px;" class="reveal">
+      <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">03</div>
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">Event Marketing</h3>
+      <p style="font-size:0.87rem;line-height:1.75;color:#666;">Reach the right audience before, during, and after your event through our community channels, newsletter, and social presence. We help fill the room with people who actually care about the content.</p>
+    </div>
+  </div>
+  <div style="margin-top:40px;text-align:center;" class="reveal">
+    <a href="membership.html" class="btn btn-red">Partner with DAS →</a>
+  </div>
+</section>
+
 <!-- WAW FEATURE -->
 <section class="events-section">
-  <div class="section-tag reveal">Flagship Series</div>
+  <div class="section-tag reveal">Our Flagship Event</div>
   <h2 class="section-h reveal">Web Analytics Wednesday</h2>
   <div class="waw-feature">
     <div>
@@ -203,7 +230,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand"><img src="brand_assests/DAS_Logo_Blackbgversion.png" alt="Digital Analytics Society" /><p class="footer-tagline">The Data &amp; Digital Community<br/>Connecting Innovation Since 1980</p><p>A professional society for everyone with a link to data, analytics, digital and marketing.</p></div>
-    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Events</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
+    <div class="footer-col"><h5>Community</h5><ul><li><a href="events.html">Event Support</a></li><li><a href="membership.html">Memberships</a></li><li><a href="community.html">Forums</a></li></ul></div>
     <div class="footer-col"><h5>Publishing</h5><ul><li><a href="publishing.html">Our Books</a></li><li><a href="publishing.html">Publish With Us</a></li></ul></div>
     <div class="footer-col"><h5>Organisation</h5><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
   </div>
@@ -218,7 +245,7 @@ const revObs = new IntersectionObserver(entries => { entries.forEach(e => { if (
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 const cntObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { const t=parseInt(e.target.dataset.count),s=e.target.dataset.suffix||'',d=1600;let st=null;const f=ts=>{if(!st)st=ts;const p=Math.min((ts-st)/d,1),ea=1-Math.pow(1-p,3),v=Math.floor(ea*t);e.target.textContent=v>=1000?(v/1000).toFixed(1)+'K'+s:v+s;if(p<1)requestAnimationFrame(f);};requestAnimationFrame(f);cntObs.unobserve(e.target);}});},{threshold:0.5});
 document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
-function toggleNav(){const l=document.getElementById('navLinks');const o=l.style.display==='flex';l.style.display=o?'none':'flex';if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';}}
+function toggleNav(){const l=document.getElementById('navLinks');const o=l.style.display==='flex';l.style.display=o?'none':'flex';if(!o){l.style.cssText='display:flex;flex-direction:column;position:fixed;top:80px;left:0;right:0;background:#0f0f0f;padding:24px 5vw 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:199;';}}
 </script>
 </body>
 </html>
