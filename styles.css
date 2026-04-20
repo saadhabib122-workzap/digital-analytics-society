@@ -18,7 +18,7 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Open Sans', sans-serif; color: var(--black); background: var(--white); overflow-x: hidden; }
 h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; }
-section, .stats-band, .manifesto, .cta-section { scroll-margin-top: 80px; }
+section, .stats-band, .manifesto, .cta-section { scroll-margin-top: 88px; }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--black); }
@@ -28,7 +28,7 @@ section, .stats-band, .manifesto, .cta-section { scroll-margin-top: 80px; }
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw; height: 80px;
+  padding: 0 5vw; height: 88px;
   background: rgba(15,15,15,0.93);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -39,16 +39,16 @@ nav.light {
   border-bottom-color: var(--gray);
 }
 .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-.nav-logo img { height: 52px; width: auto; border-radius: 8px; }
+.nav-logo img { height: 62px; width: auto; border-radius: 8px; }
 .logo-dark { display: block; }
 .logo-light { display: none; }
 nav.light .logo-dark { display: none; }
 nav.light .logo-light { display: block; }
-.nav-logo-text { display: flex; flex-direction: column; gap: 3px; }
-.nav-org-name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; color: white; letter-spacing: 0.01em; line-height: 1; }
-.nav-tagline { font-family: 'DM Mono', monospace; font-size: 0.53rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); text-transform: uppercase; line-height: 1; }
+.nav-logo-text { display: flex; flex-direction: column; gap: 4px; }
+.nav-org-name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem; color: white; letter-spacing: 0.01em; line-height: 1; }
+.nav-tagline { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); text-transform: uppercase; line-height: 1; }
 nav.light .nav-org-name { color: var(--black); }
-nav.light .nav-tagline { color: rgba(0,0,0,0.4); }
+nav.light .nav-tagline { color: rgba(0,0,0,0.55); }
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
 .nav-links a {
   text-decoration: none; font-family: 'Poppins', sans-serif;
@@ -107,7 +107,7 @@ canvas.shader-canvas {
 
 /* ─── INNER PAGE HERO ─────────────────────────── */
 .page-hero {
-  background: var(--black); padding: 152px 5vw 80px;
+  background: var(--black); padding: 160px 5vw 80px;
   position: relative; overflow: hidden;
 }
 .page-hero::after {
