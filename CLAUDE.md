@@ -78,7 +78,7 @@ git add -A && git diff --cached --quiet || (git commit -m "deploy: $(date +%H%M)
 - Every file change made during a session is committed and pushed automatically when Claude finishes responding
 - GitHub Actions then deploys the updated site within ~60 seconds
 - No manual git commands needed
-- Live site: https://saadhabib122-workzap.github.io/digital-analytics-society/
+- Live site: https://digitalanalyticssociety.com/ (GitHub Pages fallback: https://saadhabib122-workzap.github.io/digital-analytics-society/)
 - Repo: https://github.com/saadhabib122-workzap/digital-analytics-society
 
 **If a push fails** (merge conflict, network issue), re-run manually:
